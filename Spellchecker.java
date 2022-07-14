@@ -33,10 +33,18 @@ public static void insert(TrieNode prefixTree, String insertion){
 public static Boolean checkPresent(TrieNode prefixTree, String string){
      
     TrieNode pointer = prefixTree; 
+
     for (int i = 0; i < string.length(); i++){
 
         if (pointer.Trie[string.charAt(i)] == null){
-            System.out.println("Suggestions:\n"); 
+
+            if (i == string.length() - 1){
+                System.out.println("Suggestions:\n"); 
+            }
+            else{
+                System.out.println("Did you mean?\n"); 
+            }
+        
             showSuggestions(prefixTree, string.substring(0, i));
             System.out.println("");
             return false; 
@@ -59,7 +67,7 @@ public static Boolean checkPresent(TrieNode prefixTree, String string){
 public static void main (String[] args) throws Exception {
     TrieNode root = new TrieNode(); 
 
-    File file = new File("/Users/jacksonbrouwer/programming_files/spellchecker/words_alpha.txt");
+    File file = new File("words_alpha.txt");
     Scanner sc = new Scanner(file);
 
     while (sc.hasNextLine()) {
